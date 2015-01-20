@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="empty"/>
     <string name="details_fragment">Details fragment</string>
+    <string name="type_me">Please, type!</string>
 
 </resources>

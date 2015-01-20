@@ -66,4 +66,18 @@ public abstract class BaseFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void startFragmentForResult(Fragment current, Fragment newFragment, int requestCode) {
+        newFragment.setTargetFragment(current, requestCode);
+        ReplaceFragment.with(newFragment).addToBackStack().go();
+    }
+
+    /**
+     * @param data passed in onActivityResult of target fragment
+     * @param resultCode
+     */
+    public void setResult(Intent data, int resultCode) {
+        getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, data);
+    }
+
 }
