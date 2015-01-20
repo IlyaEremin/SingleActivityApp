@@ -1,17 +1,16 @@
 package com.flatstack.singleactivityapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.flatstack.singleactivityapp.R;
-import com.flatstack.singleactivityapp.utils.Bus;
 
 /**
  * Created by IlyaEremin on 14/01/15.
@@ -27,7 +26,7 @@ public abstract class BaseFragment extends Fragment {
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // here we can use some fragment arguments injector, for example fragmentargs
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             fragmentInfo = getFragmentInfo();
         } else {
             fragmentInfo = (FragmentInfo) savedInstanceState.getSerializable(FRAGMENT_INFO_KEY);
@@ -54,7 +53,9 @@ public abstract class BaseFragment extends Fragment {
 
     @Override public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(FRAGMENT_INFO_KEY, fragmentInfo);
+        if(fragmentInfo != null){
+            outState.putSerializable(FRAGMENT_INFO_KEY, fragmentInfo);
+        }
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
