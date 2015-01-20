@@ -44,7 +44,7 @@ public abstract class BaseFragment extends Fragment {
     @Override public void onResume() {
         super.onResume();
         getActivity().setTitle(fragmentInfo.getTitle());
-        Bus.event(fragmentInfo.getHomeBtn());
+        ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(fragmentInfo.getHomeBtn() == HomeButtonAction.BACK);
     }
 
     @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

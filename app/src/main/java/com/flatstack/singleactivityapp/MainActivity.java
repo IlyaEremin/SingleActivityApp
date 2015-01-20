@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.flatstack.singleactivityapp.fragments.HomeButtonAction;
 import com.flatstack.singleactivityapp.fragments.InitialFragment;
 import com.flatstack.singleactivityapp.fragments.ReplaceFragment;
 import com.flatstack.singleactivityapp.utils.Bus;
@@ -52,9 +51,5 @@ public class MainActivity extends ActionBarActivity {
     @Override protected void onDestroy() {
         Bus.unsubscribe(this);
         super.onDestroy();
-    }
-
-    public void onEvent(HomeButtonAction event) {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(event == HomeButtonAction.BACK);
     }
 }
