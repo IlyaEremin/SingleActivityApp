@@ -49,7 +49,7 @@ public abstract class BaseFragment extends Fragment {
 
     @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(fragmentInfo.getActionBarMenuId() == 0 ? R.menu.empty : fragmentInfo.getActionBarMenuId(), menu);
+        inflater.inflate(fragmentInfo.getActionBarMenuId(), menu);
     }
 
     @Override public void onSaveInstanceState(Bundle outState) {

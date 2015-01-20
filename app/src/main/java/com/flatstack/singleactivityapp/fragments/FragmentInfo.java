@@ -19,7 +19,7 @@ import lombok.experimental.Accessors;
 class FragmentInfo implements Serializable {
     @Getter @Setter private @StringRes int title = R.string.empty;
     @Getter @Setter private @LayoutRes int layoutId;
-    @Getter @Setter private @MenuRes   int actionBarMenuId;
+    @Getter @Setter private @MenuRes   int actionBarMenuId = R.menu.empty;
     @Getter @Setter private HomeButtonAction homeBtn = HomeButtonAction.ICON;
 
     public FragmentInfo(@LayoutRes int layoutId){
