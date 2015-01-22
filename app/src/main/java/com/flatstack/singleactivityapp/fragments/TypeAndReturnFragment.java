@@ -15,13 +15,13 @@ import com.flatstack.singleactivityapp.utils.Constant;
 /**
  * Created by IlyaEremin on 16/01/15.
  */
-public class TypeAndGoFragment extends BaseFragment {
+public class TypeAndReturnFragment extends BaseFragment {
 
     EditText editText;
     TextView okBtn;
 
     @NonNull @Override protected FragmentInfo getFragmentInfo() {
-        return new FragmentInfo(R.layout.emit_data_screen).setHomeBtn(HomeButtonAction.BACK).setTitle(R.string.type_me);
+        return new FragmentInfo(R.layout.type_and_return_screen).setHomeBtn(HomeButtonAction.BACK).setTitle(R.string.type_me);
     }
 
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

@@ -34,7 +34,7 @@ public class InitialFragment extends BaseFragment {
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_type:
-                startFragmentForResult(this, new TypeAndGoFragment(), TYPE_REQUEST_CODE);
+                startFragmentForResult(this, new TypeAndReturnFragment(), TYPE_REQUEST_CODE);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

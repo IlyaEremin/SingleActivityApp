@@ -43,6 +43,7 @@ public abstract class BaseFragment extends Fragment {
     @Override public void onResume() {
         super.onResume();
         getActivity().setTitle(fragmentInfo.getTitle());
+        // set action bar home icon and behaviour
         ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(fragmentInfo.getHomeBtn() == HomeButtonAction.BACK);
     }
 
