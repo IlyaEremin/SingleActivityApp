@@ -29,7 +29,7 @@ public abstract class BaseFragment extends Fragment {
         if (savedInstanceState == null) {
             fragmentInfo = getFragmentInfo();
         } else {
-            fragmentInfo = (FragmentInfo) savedInstanceState.getSerializable(FRAGMENT_INFO_KEY);
+            fragmentInfo = savedInstanceState.getParcelable(FRAGMENT_INFO_KEY);
         }
         setHasOptionsMenu(true);
     }
@@ -55,7 +55,7 @@ public abstract class BaseFragment extends Fragment {
     @Override public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if(fragmentInfo != null){
-            outState.putSerializable(FRAGMENT_INFO_KEY, fragmentInfo);
+            outState.putParcelable(FRAGMENT_INFO_KEY, fragmentInfo);
         }
     }
 
