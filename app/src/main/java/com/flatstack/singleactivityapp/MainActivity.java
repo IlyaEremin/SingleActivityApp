@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.flatstack.singleactivityapp.fragments.FragmentTransactionEvent;
 import com.flatstack.singleactivityapp.fragments.InitialFragment;
-import com.flatstack.singleactivityapp.fragments.ReplaceFragment;
 import com.flatstack.singleactivityapp.utils.Bus;
 
 
@@ -24,19 +24,19 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         if (savedInstanceState == null) {
-            ReplaceFragment.with(new InitialFragment()).go();
+            FragmentTransactionEvent.with(new InitialFragment()).emit();
         }
     }
 
-    private void replaceFragment(ReplaceFragment replaceIFragmentInfo) {
-        if (replaceIFragmentInfo.isClearBackStack()){
+    private void replaceFragment(FragmentTransactionEvent transactionInfo) {
+        if (transactionInfo.isClearBackStack()){
             clearFragmentBackStack();
         }
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        if (replaceIFragmentInfo.isAddToBackStack()) {
+        if (transactionInfo.isAddToBackStack()) {
             ft.addToBackStack(null);
         }
-        ft.replace(R.id.content_frame, replaceIFragmentInfo.getFragment());
+        ft.replace(R.id.content_frame, transactionInfo.getFragment());
         ft.commit();
     }
 
@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
-    public void onEvent(ReplaceFragment replace){
+    public void onEvent(FragmentTransactionEvent replace){
         replaceFragment(replace);
     }
 
