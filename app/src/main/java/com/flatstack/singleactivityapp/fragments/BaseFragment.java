@@ -17,8 +17,6 @@ import android.view.ViewGroup;
  */
 public abstract class BaseFragment extends Fragment {
 
-    private static final String FRAGMENT_INFO_KEY = "fragmentInfoKey";
-
     protected FragmentInfo fragmentInfo;
 
     protected abstract @NonNull FragmentInfo getFragmentInfo();
@@ -26,11 +24,6 @@ public abstract class BaseFragment extends Fragment {
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // here we can use some fragment arguments injector, for example fragmentargs
-        if (savedInstanceState == null) {
-            fragmentInfo = getFragmentInfo();
-        } else {
-            fragmentInfo = savedInstanceState.getParcelable(FRAGMENT_INFO_KEY);
-        }
         setHasOptionsMenu(true);
     }
 
@@ -52,12 +45,6 @@ public abstract class BaseFragment extends Fragment {
         inflater.inflate(fragmentInfo.getActionBarMenuId(), menu);
     }
 
-    @Override public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if(fragmentInfo != null){
-            outState.putParcelable(FRAGMENT_INFO_KEY, fragmentInfo);
-        }
-    }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -71,7 +58,7 @@ public abstract class BaseFragment extends Fragment {
 
     public void startFragmentForResult(Fragment current, Fragment newFragment, int requestCode) {
         newFragment.setTargetFragment(current, requestCode);
-        ReplaceFragment.with(newFragment).addToBackStack().go();
+        FragmentTransactionEvent.with(newFragment).addToBackStack().emit();
     }
 
     /**
