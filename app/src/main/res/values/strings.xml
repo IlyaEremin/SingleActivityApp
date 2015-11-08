@@ -7,5 +7,6 @@
     <string name="empty"/>
     <string name="details_fragment">Details fragment</string>
     <string name="type_me">Please, type!</string>
+    <string name="dont_change"/>
 
 </resources>

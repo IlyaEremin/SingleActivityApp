@@ -1,27 +1,67 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.flatstack.singleactivityapp"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        preDexLibraries = false
+        incremental = true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+}
+
+ext {
+    supportLibraryVersion = '23.1.0'
+    lombok = '1.14.8'
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'org.projectlombok:lombok:1.14.2'              // getters setters boilerplate
+
+    compile 'com.f2prateek.dart:dart:1.1.0' // activity arguments
+
+    apt "org.projectlombok:lombok:$lombok" // POJO boilerplate
+    provided "org.projectlombok:lombok:$lombok" // POJO boilerplate
+
+    compile 'com.jakewharton:butterknife:7.0.0' // view injection
+
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'io.reactivex:rxjava:1.0.14'
 }

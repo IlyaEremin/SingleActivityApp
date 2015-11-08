@@ -1,4 +1,4 @@
-package com.flatstack.singleactivityapp.fragments;
+package com.flatstack.singleactivityapp.ui.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.flatstack.singleactivityapp.R;
-import com.flatstack.singleactivityapp.utils.Constant;
+import com.flatstack.singleactivityapp.utils.Constants;
 
 /**
  * Created by IlyaEremin on 14/01/15.
@@ -43,7 +43,7 @@ public class InitialFragment extends BaseFragment {
 
     @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == Activity.RESULT_OK && requestCode == TYPE_REQUEST_CODE){
-            someText = data.getStringExtra(Constant.DATA_STRING);
+            someText = data.getStringExtra(Constants.DATA_STRING);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }

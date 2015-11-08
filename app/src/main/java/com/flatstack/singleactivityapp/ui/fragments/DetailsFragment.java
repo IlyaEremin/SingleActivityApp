@@ -1,4 +1,4 @@
-package com.flatstack.singleactivityapp.fragments;
+package com.flatstack.singleactivityapp.ui.fragments;
 
 import android.support.annotation.NonNull;
 
