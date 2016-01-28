@@ -30,12 +30,6 @@ class FragmentInfo {
     private boolean isNeedLeftMenu;
     private boolean isNeedDagerInject;
     private boolean showActionBar      = true;
-    private boolean needArgumentInject = false;
-
-    public FragmentInfo makeArgumentInject() {
-        this.needArgumentInject = true;
-        return this;
-    }
 
     public FragmentInfo makeDependencyInject() {
         isNeedDagerInject = true;
@@ -51,6 +45,5 @@ class FragmentInfo {
         showActionBar = false;
         return this;
     }
-
 
 }

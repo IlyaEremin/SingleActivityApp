@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -20,14 +19,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.f2prateek.dart.Dart;
+import com.flatstack.singleactivityapp.MainActivity;
+import com.flatstack.singleactivityapp.Navigator;
 import com.flatstack.singleactivityapp.R;
-import com.flatstack.singleactivityapp.ui.activities.MainActivity;
 import com.flatstack.singleactivityapp.utils.AndroidUtils;
 
 import butterknife.ButterKnife;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by IlyaEremin on 14/01/15.
@@ -39,7 +36,7 @@ public abstract class BaseFragment extends Fragment {
 
     @Override public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        if (fragmentInfo.isNeedArgumentInject()) {
+        if (getArguments() != null) {
             Dart.inject(this, getArguments());
         }
         if (savedState != null) {
@@ -83,10 +80,6 @@ public abstract class BaseFragment extends Fragment {
         return v;
     }
 
-    @NonNull protected <T> Observable<T> bind(@NonNull Observable<T> source) {
-        return source.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
-    }
-
     abstract protected FragmentInfo getFragmentInfo();
 
     @Override public void onResume() {
@@ -125,6 +118,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void inject() {
+        throw new IllegalStateException("must be overrided");
     }
 
     protected String textOf(TextView tv) {
@@ -163,9 +157,10 @@ public abstract class BaseFragment extends Fragment {
     protected Context context() {
         return getActivity();
     }
+
     public void startFragmentForResult(Fragment current, Fragment newFragment, int requestCode) {
         newFragment.setTargetFragment(current, requestCode);
-        FragmentTransactionEvent.with(newFragment).addToBackStack().emit();
+        Navigator.showScreen(newFragment, Navigator.ADD_TO_BACKSTACK);
     }
 
     /**

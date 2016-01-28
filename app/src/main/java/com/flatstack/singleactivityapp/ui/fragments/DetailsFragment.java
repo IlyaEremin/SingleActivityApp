@@ -10,6 +10,8 @@ import com.flatstack.singleactivityapp.R;
 public class DetailsFragment extends BaseFragment {
 
     @NonNull @Override protected FragmentInfo getFragmentInfo() {
-        return new FragmentInfo(R.layout.details_fragment).setTitle(R.string.details_fragment).setHomeBtn(HomeButtonAction.BACK);
+        return new FragmentInfo(R.layout.details_fragment)
+            .setTitle(R.string.details_fragment)
+            .setHomeBtn(HomeButtonAction.BACK);
     }
 }
